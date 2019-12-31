@@ -3,10 +3,10 @@
 # for your DNS domain 
 
 #domain: .freng.org
-domain: .frk8s.net
+domain: .eg.fr.kcom.com
 
 #fqdn: login.small.freng.org
-fqdn: login.prod.frk8s.net
+fqdn: login.prod.eg.fr.kcom.com
 
 # Install passwords.
 amadminPassword: password

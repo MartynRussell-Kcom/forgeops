@@ -13,8 +13,7 @@ s3:
   bucket: s3://forgeops/dj-backup/s-cluster  
 
 nfs:
-  server: 10.201.33.74
-  #server: fs-ab7e17e1.efs.us-east-1.amazonaws.com
+  server: fs-0b6822c0.efs.eu-west-1.amazonaws.com
   path: /export
 
 backup:
