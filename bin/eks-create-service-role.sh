@@ -21,4 +21,7 @@ echo "EKS Role created with ARN ${EKS_SERVICE_ROLE_ARN}"
 aws iam attach-role-policy --role-name ${EKS_SERVICE_ROLE} --policy-arn arn:aws:iam::aws:policy/AmazonEKSClusterPolicy
 aws iam attach-role-policy --role-name ${EKS_SERVICE_ROLE} --policy-arn arn:aws:iam::aws:policy/AmazonEKSServicePolicy
 
+echo "EKS elastic load balancing role being added..."
+aws iam create-service-linked-role --aws-service-name "elasticloadbalancing.amazonaws.com"
+
 echo "EKS/EC2 policies attached to the IAM role."
