@@ -30,7 +30,9 @@ releases=`helm list --namespace ${NAMESPACE} --all -q`
 for r in "${releases}"
 do
     echo "Deleting release $r"
-    helm delete --purge $r
+    # v3.x doesn't have --purge
+    # helm delete --purge $r
+    helm delete $r
 done
 
 # Delete persistent volume claims
@@ -60,6 +62,16 @@ if [ -n "$REMOVE_NS" ]; then
           sleep 5
     done
 fi
+
+# MR: Seems deleteing the PVCs doesn't clean up the PVs, this is needed:
+pvlist=`kubectl get pv --namespace ${NAMESPACE} -o jsonpath='{.items[*].metadata.name}'`
+
+for pv in ${pvlist}
+do
+    echo "Deleting $pv"
+    kubectl delete pv --namespace ${NAMESPACE}  ${pv}
+done
+
 
 # Needed for cloudbuild
 exit 0

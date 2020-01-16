@@ -32,6 +32,8 @@ aws route53 change-resource-record-sets --hosted-zone-id ${HOSTED_ZONE_ID} --cha
 aws route53 change-resource-record-sets --hosted-zone-id ${HOSTED_ZONE_ID} --change-batch '{"Comment":"DELETE a record ","Changes":[{"Action":"DELETE","ResourceRecordSet":{"Name":"'"${IDM_URL}"'","Type":"CNAME","TTL":300,"ResourceRecords":[{"Value":"'"${NLB_DNS}"'"}]}}]}' || true
 
 echo "Removing nginx helm chart..."
+# MR: There is no --purge with helm 3.x
+# helm del nginx || true
 helm del --purge nginx || true
 
 echo "Removing ${EKS_MONITORING_NS} namespace..."
