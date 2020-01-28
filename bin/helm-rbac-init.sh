@@ -10,4 +10,5 @@ kubectl -n kube-system delete deployment tiller-deploy
 
 kubectl -n kube-system create sa tiller
 kubectl create clusterrolebinding tiller --clusterrole cluster-admin --serviceaccount=kube-system:tiller
+# MR: --upgrade not available in v3.x
 helm init --upgrade --wait --service-account tiller
