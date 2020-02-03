@@ -291,6 +291,10 @@ deploy_hpa()
 # main
 ###############################################################################
 
+helm_ver=$(helm version -c --short)
+echo "Checking the right version of helm is available, expected v3.x, got $helm_ver..."
+echo $helm_ver | grep v3 > /dev/null
+
 YAML="" # Additional YAML options for helm
 ENV_SH=""
 OPT_NAMESPACE=""
